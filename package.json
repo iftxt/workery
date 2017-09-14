@@ -1,0 +1,43 @@
+{
+  "name": "workery",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": "phra",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p .",
+    "commit": "git-cz",
+    "lint": "tslint -p .",
+    "lint:fix": "tslint --fix -p .",
+    "upgrade": "yarn upgrade-interactive",
+    "pretest": "echo pretest",
+    "test": "echo test",
+    "validate": "yarn check"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "build",
+    "pretest",
+    "test"
+  ],
+  "dependencies": {
+    "@types/dotenv": "^4.0.1",
+    "@types/node": "^8.0.28",
+    "amqplib": "^0.5.1",
+    "dotenv": "^4.0.0",
+    "typescript": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.4",
+    "cz-conventional-changelog": "^2.0.0",
+    "precommit-hook": "^3.0.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0"
+  }
+}

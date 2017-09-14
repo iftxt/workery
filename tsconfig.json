@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "allowJs": false,
+        "target": "es2017",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "lib": [
+            "es2017",
+            "esnext.asynciterable",
+            "dom"
+        ],
+        "alwaysStrict": true,
+        "strict": true
+    },
+    "exclude": [
+      "node_modules",
+      "app"
+    ],
+    "compileOnSave": true
+}
