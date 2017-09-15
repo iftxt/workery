@@ -13,6 +13,10 @@
   version "3.5.10"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.10.tgz#c4b09b7ffa4b1b2baec2b03eca8618687099acb0"
 
+"@types/deep-freeze@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@types/deep-freeze/-/deep-freeze-0.1.1.tgz#0e1ee6ceee06f51baeb663deec0bb7780bd72827"
+
 "@types/dotenv@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/dotenv/-/dotenv-4.0.1.tgz#a0db2a2d25b5c01ff387f07c4f1e002d592873e8"
@@ -158,6 +162,10 @@ cz-conventional-changelog@^2.0.0:
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
+
+deep-freeze@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/deep-freeze/-/deep-freeze-0.0.1.tgz#3a0b0005de18672819dfd38cd31f91179c893e84"
 
 diff@^3.1.0, diff@^3.2.0:
   version "3.3.1"
