@@ -2,46 +2,49 @@ import * as amqp from 'amqplib'
 import * as cluster from 'cluster'
 import * as deepFreeze from 'deep-freeze'
 import * as dotenv from 'dotenv'
-import { runInNewContext } from 'vm'
 import * as http from 'http'
+import { runInNewContext } from 'vm'
 
 dotenv.config()
 
 const queue = process.env.AMQP_QUEUE as string
 const open = amqp.connect(process.env.AMQP_ENDPOINT as string)
 
-const recursiveCall = (names, obj) => {
+const recursiveCall = (names: string, obj: object): any => {
   const keys = names.split('.')
   if (keys.length === 1) {
-    return obj[keys[0]]
+    return (obj as any)[keys[0]]
   }
-  const key = keys.splice(0, 1)
-  return recursiveCall(keys.join('.'), obj[key])
+
+  const key = keys.splice(0, 1)[0]
+  return recursiveCall(keys.join('.'), (obj as any)[key])
 }
 
-const _handler = (prev) => {
+const handler = (prev: string) => {
   return {
-    get: function (target, name) {
-      if (typeof http[name] === 'object') {
-        if (prev) _prev += '.' + name
-        return prox(http[name], handler(prev))
+    get(target: object, name: string) {
+      if (typeof (http as any)[name] === 'object') {
+        if (prev) {
+          prev += '.' + name
+        }
+        return prox((http as any)[name], handler(prev))
       }
       return recursiveCall(prev + '.' + name, http)
     },
     set: () => {
       return true
-    }
+    },
   }
 }
 
-function prox (obj, handler) {
-  return new Proxy(obj, handler)
+function prox(obj: object, callback: object) {
+  return new Proxy(obj, callback)
 }
 
-const _http = new prox({}, {
-  get: function(target, name) {
-    return prox(http[name], _handler(name))
-  }
+const proxedHttp = prox({}, {
+  get(target: object, name: string) {
+    return prox((http as any)[name], handler(name))
+  },
 })
 
 open.then((conn) => conn.createChannel()).then((ch) => {
@@ -53,7 +56,7 @@ open.then((conn) => conn.createChannel()).then((ch) => {
           const message = JSON.parse(msg.content.toString())
           runInNewContext(message.code, {
             console: deepFreeze({ ...require('console') }),
-            http: _http,
+            http: proxedHttp,
           }, { filename: 'sandboxed.js', timeout: 1e5, displayErrors: true })
         } catch (err) {
           console.warn.apply(console, err)
