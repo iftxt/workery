@@ -11,6 +11,7 @@
     "lint:fix": "tslint --fix -p .",
     "upgrade": "yarn upgrade-interactive",
     "pretest": "echo pretest",
+    "start": "ts-node --fast index.ts",
     "test": "echo test",
     "validate": "yarn check"
   },
