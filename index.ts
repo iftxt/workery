@@ -1,4 +1,5 @@
 import * as amqp from 'amqplib'
+import * as deepFreeze from 'deep-freeze'
 import * as dotenv from 'dotenv'
 import { runInNewContext } from 'vm'
 
@@ -14,7 +15,10 @@ open.then((conn) => conn.createChannel()).then((ch) =>
         ch.ack(msg)
         try {
           const message = JSON.parse(msg.content.toString())
-          runInNewContext(message.code, { console: Object.freeze({ ...console }) }, { filename: 'sandboxed.js', timeout: 1e5 })
+          runInNewContext(message.code, {
+            console: deepFreeze({ ...require('console') }),
+            http: deepFreeze({ ...require('http') }),
+          }, { filename: 'sandboxed.js', timeout: 1e5, displayErrors: true })
         } catch (err) {
           console.warn.apply(console, err)
         }
