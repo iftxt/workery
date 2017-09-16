@@ -13,10 +13,6 @@
   version "3.5.10"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.10.tgz#c4b09b7ffa4b1b2baec2b03eca8618687099acb0"
 
-"@types/deep-freeze@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@types/deep-freeze/-/deep-freeze-0.1.1.tgz#0e1ee6ceee06f51baeb663deec0bb7780bd72827"
-
 "@types/dotenv@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/dotenv/-/dotenv-4.0.1.tgz#a0db2a2d25b5c01ff387f07c4f1e002d592873e8"
@@ -251,10 +247,6 @@ date-now@^0.1.4:
 dedent@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.6.0.tgz#0e6da8f0ce52838ef5cec5c8f9396b0c1b64a3cb"
-
-deep-freeze@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/deep-freeze/-/deep-freeze-0.0.1.tgz#3a0b0005de18672819dfd38cd31f91179c893e84"
 
 detect-file@^0.1.0:
   version "0.1.0"
@@ -956,6 +948,10 @@ rx@^4.1.0:
 safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
+
+sand-require@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/sand-require/-/sand-require-1.1.0.tgz#c817ce1b5099280c5d46658ce9c79827f59808b9"
 
 semver@^5.3.0:
   version "5.4.1"
