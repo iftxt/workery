@@ -19,5 +19,9 @@
       "node_modules",
       "app"
     ],
-    "compileOnSave": true
+    "compileOnSave": true,
+    "files": [
+      "index.ts",
+      "types/sand-require.d.ts"
+    ]
 }
