@@ -5,6 +5,7 @@
   "author": "phra",
   "license": "MIT",
   "scripts": {
+    "prepublish": "yarn run build",
     "build": "tsc -p .",
     "commit": "git-cz",
     "lint": "tslint -p .",
