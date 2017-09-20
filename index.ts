@@ -17,7 +17,7 @@ open.then((conn) => conn.createChannel()).then((ch) => {
         try {
           const message = JSON.parse(msg.content.toString())
           runInNewContext(message.code, {
-            console: sandRequire('console'),
+            console: Object.freeze({ ...console }),
             http: sandRequire('http'),
             https: sandRequire('https'),
           }, { filename: 'sandboxed.js', timeout: 1e5, displayErrors: true })
