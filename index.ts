@@ -1,5 +1,9 @@
+// tslint:disable-next-line:no-reference
+/// <reference path="./untyped.d.ts" />
+
 import * as amqp from 'amqplib'
 import * as cluster from 'cluster'
+import * as deepFreeze from 'deep-freeze'
 import * as dotenv from 'dotenv'
 import sandRequire = require('sand-require')
 import { runInNewContext } from 'vm'
@@ -17,6 +21,7 @@ open.then((conn) => conn.createChannel()).then((ch) => {
         try {
           const message = JSON.parse(msg.content.toString())
           runInNewContext(message.code, {
+            payload: deepFreeze(message.payload),
             console: Object.freeze({ ...console }),
             http: sandRequire('http'),
             https: sandRequire('https'),
